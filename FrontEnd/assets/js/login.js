@@ -1,5 +1,7 @@
 // Login
 
+import { fetchLogin } from "./fetch.js";
+
 let emailInput = document.querySelector('input[type="email"]');
 let passwordInput = document.querySelector('input[type="password"]');
 let submitInput = document.querySelector('input[type="submit"]');
@@ -17,6 +19,5 @@ passwordInput.addEventListener("input", (e) => {
 
 submitInput.addEventListener("click", (e) => {
   e.preventDefault();
-  console.log(email);
-  console.log(password);
+  fetchLogin(email, password);
 });

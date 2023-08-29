@@ -1,3 +1,5 @@
+// WORKS
+
 export async function fetchWorks() {
   try {
     const r = await fetch("http://localhost:5678/api/works", {
@@ -11,17 +13,43 @@ export async function fetchWorks() {
   }
 }
 
-export async function fetchLogin(data) {
+// LOGIN
+
+export async function fetchLogin(email, password) {
   try {
     const r = await fetch("http://localhost:5678/api/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: `{
+        "email": "${email}",
+        "password": "${password}"
+      }`,
     });
-    return r.json();
+
+    const responseLogin = await r.json();
+
+    if (r.ok) {
+      const token = responseLogin.token;
+      localStorage.setItem("token", token);
+      window.location.href = "./index.html";
+      return token;
+    } else if (r.status === 401) {
+      loginIncorrect();
+    } else if (r.status === 404) {
+      loginNotFound();
+    }
   } catch (err) {
-    console.error("Impossible d'envoyer les données à l'API " + err);
+    console.error("Erreur survenue lors de la connexion." + err);
   }
+}
+
+function loginIncorrect() {
+  const formAlert = document.querySelector(".form-alert");
+  formAlert.textContent = "Email ou mot de passe incorrect.";
+}
+function loginNotFound() {
+  const formAlert = document.querySelector(".form-alert");
+  formAlert.textContent = "Impossible de trouver cet utilisateur.";
 }

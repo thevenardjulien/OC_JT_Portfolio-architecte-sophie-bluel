@@ -1,10 +1,13 @@
 import { fetchWorks } from "./fetch.js";
 
+const works = await fetchWorks();
+
 // DIV Edit Gallery
 
 const storedToken = localStorage.token;
 let editGallery = document.querySelector(".edit");
-let modalGallery = document.querySelector(".modal");
+let modal = document.querySelector(".modal");
+let modalExit = document.querySelector(".modal-exit");
 
 if (storedToken) {
   editGallery.style.display = "flex";
@@ -13,19 +16,41 @@ if (storedToken) {
 }
 
 editGallery.addEventListener("click", (e) => {
-  modalGallery.style.display = "block";
+  modal.style.display = "block";
   e.stopPropagation();
-  console.log(e.currentTarget);
+});
+
+modalExit.addEventListener("click", (e) => {
+  modal.style.display = "none";
 });
 
 document.addEventListener("click", (e) => {
-  modalGallery.style.display = "none";
-  console.log(e.currentTarget);
+  modal.style.display = "none";
 });
 
-modalGallery.addEventListener("click", (e) => {
+modal.addEventListener("click", (e) => {
   e.stopPropagation();
 });
+
+// Import Modal Gallery Items
+
+const modalGallery = document.querySelector(".modal-gallery");
+
+for (let i = 0; i < works.length; i++) {
+  const modalItem = document.createElement("div");
+  modalItem.dataset.id = works[i].id;
+
+  const modalImg = document.createElement("img");
+  modalImg.src = works[i].imageUrl;
+  modalImg.alt = works[i].title;
+
+  const modalEdit = document.createElement("a");
+  modalEdit.textContent = "éditer";
+
+  modalItem.append(modalImg);
+  modalItem.append(modalEdit);
+  modalGallery.append(modalItem);
+}
 
 // Filters button
 
@@ -82,10 +107,9 @@ filterBtnHotel.addEventListener("click", () => {
   });
 });
 
-// Gallery Items
+// Import Gallery Items
 
 const gallery = document.querySelector(".gallery");
-const works = await fetchWorks();
 
 for (let i = 0; i < works.length; i++) {
   const workFigure = document.createElement("figure");

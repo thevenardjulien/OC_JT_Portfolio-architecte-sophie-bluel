@@ -138,6 +138,7 @@ body {
   font-family: "Work Sans";
   font-size: 14px;
 }
+
 header {
   display: flex;
   justify-content: space-between;
@@ -152,6 +153,35 @@ section {
   min-width: 500px;
   display: flex;
   justify-content: center;
+}
+
+.projects {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.edit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 20px;
+  padding: 5px;
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  width: 450px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px 100px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 5;
 }
 
 form {

@@ -1,5 +1,32 @@
 import { fetchWorks } from "./fetch.js";
 
+// DIV Edit Gallery
+
+const storedToken = localStorage.token;
+let editGallery = document.querySelector(".edit");
+let modalGallery = document.querySelector(".modal");
+
+if (storedToken) {
+  editGallery.style.display = "flex";
+} else {
+  editGallery.style.display = "none";
+}
+
+editGallery.addEventListener("click", (e) => {
+  modalGallery.style.display = "block";
+  e.stopPropagation();
+  console.log(e.currentTarget);
+});
+
+document.addEventListener("click", (e) => {
+  modalGallery.style.display = "none";
+  console.log(e.currentTarget);
+});
+
+modalGallery.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
 // Filters button
 
 let filterBtnAll = document.querySelector(".all");

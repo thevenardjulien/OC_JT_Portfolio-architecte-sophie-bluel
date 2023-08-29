@@ -1,24 +1,23 @@
-import { fetchWorks } from "./js/fetch.js";
+/*
+// import { updateLogin } from "./js/login.js";
+Problème d'import, à voir avec Atsé
+*/
 
-const works = await fetchWorks();
-console.log(works);
+// NAV LogInOut display
 
-// Gallery Items
+const login = document.querySelector(".log a");
+const storedToken = localStorage.token;
 
-const gallery = document.querySelector(".gallery");
-
-for (let i = 0; i < works.length; i++) {
-  const workFigure = document.createElement("figure");
-  workFigure.dataset.category = works[i].categoryId;
-
-  const workImg = document.createElement("img");
-  workImg.src = works[i].imageUrl;
-  workImg.alt = works[i].title;
-
-  const workFigCaption = document.createElement("figcaption");
-  workFigCaption.textContent = works[i].title;
-
-  workFigure.append(workImg);
-  workFigure.append(workFigCaption);
-  gallery.append(workFigure);
+if (storedToken) {
+  login.innerText = "logout";
+} else {
+  login.innerText = "login";
 }
+
+// NAV LogOut onclick
+
+login.addEventListener("click", () => {
+  if (storedToken) {
+    localStorage.removeItem("token");
+  }
+});

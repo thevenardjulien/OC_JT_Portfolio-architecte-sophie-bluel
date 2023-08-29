@@ -1,3 +1,5 @@
+import { fetchWorks } from "./fetch.js";
+
 // Filters button
 
 let filterBtnAll = document.querySelector(".all");
@@ -52,3 +54,24 @@ filterBtnHotel.addEventListener("click", () => {
     figure.style.display = "block";
   });
 });
+
+// Gallery Items
+
+const gallery = document.querySelector(".gallery");
+const works = await fetchWorks();
+
+for (let i = 0; i < works.length; i++) {
+  const workFigure = document.createElement("figure");
+  workFigure.dataset.category = works[i].categoryId;
+
+  const workImg = document.createElement("img");
+  workImg.src = works[i].imageUrl;
+  workImg.alt = works[i].title;
+
+  const workFigCaption = document.createElement("figcaption");
+  workFigCaption.textContent = works[i].title;
+
+  workFigure.append(workImg);
+  workFigure.append(workFigCaption);
+  gallery.append(workFigure);
+}

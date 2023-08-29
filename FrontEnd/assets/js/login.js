@@ -21,3 +21,17 @@ submitInput.addEventListener("click", (e) => {
   e.preventDefault();
   fetchLogin(email, password);
 });
+
+/* 
+// Update UL Login
+// export function updateLogin() {
+//   const login = document.querySelector(".log a");
+//   const storedToken = localStorage.token;
+//   if (storedToken) {
+//     login.innerText = "logout";
+//   } else {
+//     login.innerText = "login";
+//   }
+// }
+Problème d'import, à voir avec Atsé
+*/

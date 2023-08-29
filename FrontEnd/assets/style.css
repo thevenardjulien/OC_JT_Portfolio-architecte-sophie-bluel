@@ -204,11 +204,22 @@ section {
 
 .modal-gallery div {
   width: 17%;
+  position: relative;
 }
 
 .modal-gallery img {
   object-fit: cover;
   width: 100%;
+}
+
+.modal-trash {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #ffffff;
+  padding: 3px 4px;
+  background-color: black;
+  border-radius: 2px;
 }
 
 form {

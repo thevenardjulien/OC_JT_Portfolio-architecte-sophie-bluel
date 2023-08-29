@@ -47,10 +47,16 @@ for (let i = 0; i < works.length; i++) {
   const modalEdit = document.createElement("a");
   modalEdit.textContent = "éditer";
 
+  const modalTrash = document.createElement("i");
+  modalTrash.classList.add("modal-trash", "fa-solid", "fa-trash-can");
+
   modalItem.append(modalImg);
   modalItem.append(modalEdit);
+  modalItem.append(modalTrash);
   modalGallery.append(modalItem);
 }
+
+// DELETE Modal Gallery Item
 
 // Filters button
 

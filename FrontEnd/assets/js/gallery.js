@@ -20,11 +20,11 @@ editGallery.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
-modalExit.addEventListener("click", (e) => {
+modalExit.addEventListener("click", () => {
   modal.style.display = "none";
 });
 
-document.addEventListener("click", (e) => {
+document.addEventListener("click", () => {
   modal.style.display = "none";
 });
 
@@ -34,7 +34,7 @@ modal.addEventListener("click", (e) => {
 
 // Import Modal Gallery Items
 
-const modalGallery = document.querySelector(".modal-gallery");
+const modalGallery = document.querySelector(".modal-img-container");
 
 for (let i = 0; i < works.length; i++) {
   const modalItem = document.createElement("div");
@@ -45,15 +45,15 @@ for (let i = 0; i < works.length; i++) {
   modalImg.alt = works[i].title;
 
   const modalEdit = document.createElement("a");
-  modalEdit.textContent = "éditer";
+  modalEdit.textContent = "Éditer";
 
   const modalTrash = document.createElement("i");
   modalTrash.classList.add("modal-trash", "fa-solid", "fa-trash-can");
 
-  modalItem.append(modalImg);
-  modalItem.append(modalEdit);
-  modalItem.append(modalTrash);
-  modalGallery.append(modalItem);
+  modalItem.prepend(modalTrash);
+  modalItem.prepend(modalEdit);
+  modalItem.prepend(modalImg);
+  modalGallery.prepend(modalItem);
 }
 
 // DELETE Modal Gallery Item
@@ -112,6 +112,8 @@ filterBtnHotel.addEventListener("click", () => {
     figure.style.display = "block";
   });
 });
+
+// Active filter (WIP)
 
 // Import Gallery Items
 

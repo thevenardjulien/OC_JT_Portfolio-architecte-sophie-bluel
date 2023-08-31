@@ -7,7 +7,10 @@ const works = await fetchWorks();
 const storedToken = localStorage.token;
 let editGallery = document.querySelector(".edit");
 let modal = document.querySelector(".modal");
+let modalPrev = document.querySelector(".modal-prev");
 let modalExit = document.querySelector(".modal-exit");
+let modalAddExit = document.querySelector(".modal-add-exit");
+const modalAdd = document.querySelector(".modal-add");
 
 if (storedToken) {
   editGallery.style.display = "flex";
@@ -20,15 +23,29 @@ editGallery.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
+modalPrev.addEventListener("click", () => {
+  modalAdd.style.display = "none";
+  modal.style.display = "block"
+})
+
 modalExit.addEventListener("click", () => {
   modal.style.display = "none";
 });
 
+modalAddExit.addEventListener("click", () => {
+  modalAdd.style.display = "none";
+});
+
 document.addEventListener("click", () => {
   modal.style.display = "none";
+  modalAdd.style.display = "none";
 });
 
 modal.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
+modalAdd.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
@@ -50,10 +67,10 @@ for (let i = 0; i < works.length; i++) {
   const modalTrash = document.createElement("i");
   modalTrash.classList.add("modal-trash", "fa-solid", "fa-trash-can");
 
-  modalItem.prepend(modalTrash);
-  modalItem.prepend(modalEdit);
-  modalItem.prepend(modalImg);
-  modalGallery.prepend(modalItem);
+  modalItem.append(modalImg);
+  modalItem.append(modalEdit);
+  modalItem.append(modalTrash);
+  modalGallery.append(modalItem);
 }
 
 // DELETE Modal Gallery Item
@@ -116,6 +133,7 @@ filterBtnHotel.addEventListener("click", () => {
 // Filters Button Active
 
 const filterBtns = document.querySelectorAll(".filter");
+filterBtnAll.classList.add("active");
 filterBtns.forEach((filterBtn) => {
   filterBtn.addEventListener("click", () => {
     document.querySelector(".active")?.classList.remove("active");
@@ -142,3 +160,14 @@ for (let i = 0; i < works.length; i++) {
   workFigure.append(workFigCaption);
   gallery.append(workFigure);
 }
+
+// Add work
+
+const addWorkBtn = document.querySelector(".modal-add-del button");
+
+addWorkBtn.addEventListener("click", () => {
+  modalAdd.style.display = "block";
+  modal.style.display = "none";
+});
+
+// Remove work

@@ -199,7 +199,8 @@ button {
   padding: 5px;
 }
 
-.modal {
+.modal,
+.modal-add {
   position: relative;
   display: none;
   position: absolute;
@@ -218,7 +219,6 @@ button {
 .modal-img-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 20px;
   padding: 30px 0;
 }
@@ -244,10 +244,20 @@ button {
   color: red;
 }
 
-.modal-exit {
+.modal-exit,
+.modal-add-exit {
   position: absolute;
   top: 30px;
   right: 30px;
+  font-size: 2rem;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.modal-prev {
+  position: absolute;
+  top: 30px;
+  left: 30px;
   font-size: 2rem;
   padding: 5px;
   cursor: pointer;
@@ -265,6 +275,16 @@ button {
 }
 
 /* Modal End */
+
+/* Modal Add */
+
+.modal-add form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Modal Add End */
 
 form {
   padding: 20px 0;

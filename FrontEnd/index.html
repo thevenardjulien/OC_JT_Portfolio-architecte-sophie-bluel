@@ -100,27 +100,28 @@
           <i class="modal-add-prev fa-solid fa-arrow-left"></i>
           <i class="modal-add-exit fa-solid fa-xmark"></i>
           <h2>Ajout photo</h2>
-          <form>
+          <form id="modal-add-form">
             <div class="file-container">
-              <i class="file-container-placeholder fa-regular fa-image"></i>
-              <label for="file" name="file" id="file-label"
-                >+ Ajouter une photo</label
-              >
+              <div class="file-container-placeholder">
+                <i class="fa-regular fa-image"></i>
+              </div>
+              <label for="file" id="file-label">+ Ajouter une photo</label>
               <input
                 type="file"
-                name="file"
+                name="image"
                 id="file"
-                accept="image/png, image/jpeg"
+                accept="image/png, image/jpg, image/jpeg"
+                required
               />
             </div>
             <label for="text">Titre</label>
-            <input type="text" name="text" id="text" />
-            <label for="">Catégorie</label>
-            <select name="select" id="select">
+            <input type="text" name="title" id="text" required />
+            <label>Catégorie</label>
+            <select name="category" id="select" required>
               <option value="">Selectionner une catégorie</option>
-              <option value="1">Objets</option>
-              <option value="2">Appartements</option>
-              <option value="3">Hôtel et restaurants</option>
+              <option name="objects" value="1">Objets</option>
+              <option name="apartments" value="2">Appartements</option>
+              <option name="hotels" value="3">Hôtel et restaurants</option>
             </select>
             <hr />
             <input type="submit" value="Valider" />

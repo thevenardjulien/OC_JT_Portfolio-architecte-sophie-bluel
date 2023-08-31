@@ -68,6 +68,7 @@ for (let i = 0; i < works.length; i++) {
 }
 
 // Add work
+// Open ModalAdd
 
 const addWorkBtn = document.querySelector(".modal-add-del button");
 
@@ -76,4 +77,31 @@ addWorkBtn.addEventListener("click", () => {
   modal.style.display = "none";
 });
 
-// Remove work
+// ModalAdd-Form
+
+const modalAddForm = document.getElementById("modal-add-form");
+const modalAddFile = document.getElementById("file");
+const placeholder = document.querySelector(".file-container-placeholder");
+const placeholderImg = document.querySelector(".file-container-placeholder i");
+
+// Edit placeholder with loaded image
+
+modalAddFile.addEventListener("change", () => {
+  const img = document.createElement("img");
+  img.classList.add("active-img");
+  img.src = URL.createObjectURL(modalAddFile.files[0]);
+  placeholderImg.style.display = "none";
+  placeholder.append(img);
+});
+
+modalAddForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(modalAddForm);
+
+  for (let item of formData) {
+    console.log(item[0], item[1]);
+  }
+  modalAddForm.reset();
+  placeholder.innerHTML = `<i class="fa-regular fa-image"></i>`;
+});

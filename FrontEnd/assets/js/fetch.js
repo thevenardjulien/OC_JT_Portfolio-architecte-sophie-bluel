@@ -54,6 +54,4 @@ function loginNotFound() {
   formAlert.textContent = "Impossible de trouver cet utilisateur.";
 }
 
-// Add work
-
-// Remove work
+// POST WORK

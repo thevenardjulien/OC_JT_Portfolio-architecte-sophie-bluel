@@ -170,8 +170,6 @@ section {
   gap: 20px;
 }
 
-/* Btn */
-
 button {
   padding: 6px 20px;
   border-radius: 50px;
@@ -183,108 +181,6 @@ button {
   font-size: 1.15rem;
   cursor: pointer;
 }
-
-.active {
-  background-color: #1d6154;
-  color: white;
-}
-
-/* Modal */
-
-.edit {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: 20px;
-  padding: 5px;
-}
-
-.modal,
-.modal-add {
-  position: relative;
-  display: none;
-  position: absolute;
-  width: 630px;
-  height: 730px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 50px 100px;
-  border-radius: 10px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px 4px rgba(0, 0, 0, 0.25);
-  z-index: 5;
-}
-
-.modal-img-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 30px 0;
-}
-
-.modal-img-container div {
-  width: 17%;
-  position: relative;
-}
-
-.modal-img-container img {
-  object-fit: cover;
-  width: 100%;
-}
-
-.modal-add-del {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
-
-.modal-add-del a {
-  color: red;
-}
-
-.modal-exit,
-.modal-add-exit {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  font-size: 2rem;
-  padding: 5px;
-  cursor: pointer;
-}
-
-.modal-prev {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  font-size: 2rem;
-  padding: 5px;
-  cursor: pointer;
-}
-
-.modal-trash {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  color: #ffffff;
-  padding: 3px 4px;
-  background-color: black;
-  border-radius: 2px;
-  cursor: pointer;
-}
-
-/* Modal End */
-
-/* Modal Add */
-
-.modal-add form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Modal Add End */
 
 form {
   padding: 20px 0;
@@ -398,13 +294,7 @@ li:hover {
   margin-bottom: 1em;
 }
 
-.gallery {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-}
+/* Filters */
 
 .filters {
   text-align: center;
@@ -413,9 +303,164 @@ li:hover {
   margin: 0 auto 30px auto;
 }
 
+.active {
+  background-color: #1d6154;
+  color: white;
+}
+
+/* Filters End */
+
+/* Gallery Edit btn */
+.edit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 20px;
+  padding: 5px;
+}
+
+/* Gallery */
+
+.gallery {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
 .gallery img {
   width: 100%;
 }
+
+/* Gallery End */
+
+/* Modal */
+
+.modal,
+.modal-add {
+  position: relative;
+  display: none;
+  position: absolute;
+  width: 630px;
+  height: 730px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px 100px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+}
+
+.modal-exit,
+.modal-add-exit {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 2rem;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.modal-trash {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #ffffff;
+  padding: 3px 4px;
+  background-color: black;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.modal-img-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 30px 0;
+}
+
+.modal-img-container div {
+  width: 17%;
+  position: relative;
+}
+
+.modal-img-container img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.modal-add-del {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.modal-add-del a {
+  color: red;
+}
+
+/* Modal End */
+
+/* Modal Add */
+
+.modal-add form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-add-prev {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 2rem;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#text,
+#select {
+  padding: 20px 10px;
+  box-shadow: 0 0px 4px 1px rgba(0, 0, 0, 0.15);
+  border: none;
+  outline: none;
+}
+
+.file-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e8f1f6;
+  border-radius: 3px;
+  padding: 25px 0;
+  gap: 15px;
+}
+
+.file-container-placeholder {
+  font-size: 5rem;
+  color: #b9c5cc;
+}
+
+#file-label {
+  background-color: #cbd6dc;
+  padding: 15px 30px;
+  border-radius: 50px;
+}
+
+input[type="file"] {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+/* Modal Add End */
 
 #contact {
   width: 50%;

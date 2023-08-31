@@ -5,8 +5,8 @@ Problème d'import, à voir avec Atsé
 
 // NAV LogInOut display
 
-const login = document.querySelector(".log a");
 const storedToken = localStorage.token;
+const login = document.querySelector(".log a");
 
 if (storedToken) {
   login.innerText = "logout";
@@ -15,6 +15,7 @@ if (storedToken) {
 }
 
 // NAV LogOut onclick
+// Remove Token
 
 login.addEventListener("click", () => {
   if (storedToken) {

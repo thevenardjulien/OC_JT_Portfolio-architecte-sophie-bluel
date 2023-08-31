@@ -56,15 +56,4 @@ function loginNotFound() {
 
 // Add work
 
-// async function fetchPostWork() {
-//   const r = await fetch('http://localhost:5678/api/works', {
-//     method: "POST",
-//     headers: {
-//       "Content-type": "application/json"
-//     },
-//   body: {`
-//   `}
-// })
-// }
-
 // Remove work

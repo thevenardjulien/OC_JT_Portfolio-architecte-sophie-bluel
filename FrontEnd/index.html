@@ -20,7 +20,9 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
     <script src="./assets/main.js" type="module"></script>
+    <script src="./assets/js/filters.js" type="module"></script>
     <script src="./assets/js/gallery.js" type="module"></script>
+    <script src="./assets/js/modals.js" type="module"></script>
   </head>
   <body>
     <header>
@@ -76,6 +78,9 @@
           <button class="apartments filter">Appartements</button>
           <button class="hotel filter">Hôtel & restaurants</button>
         </div>
+
+        <!-- MODAL -->
+
         <div class="modal">
           <i class="modal-exit fa-solid fa-xmark"></i>
           <h2>Galerie photo</h2>
@@ -88,27 +93,47 @@
             </div>
           </div>
         </div>
+
+        <!-- MODAL ADD-->
+
         <div class="modal-add">
+          <i class="modal-add-prev fa-solid fa-arrow-left"></i>
           <i class="modal-add-exit fa-solid fa-xmark"></i>
-          <i class="modal-prev fa-solid fa-arrow-left"></i>
           <h2>Ajout photo</h2>
           <form>
-            <div class="file-container"><input type="file" /></div>
+            <div class="file-container">
+              <i class="file-container-placeholder fa-regular fa-image"></i>
+              <label for="file" name="file" id="file-label"
+                >+ Ajouter une photo</label
+              >
+              <input
+                type="file"
+                name="file"
+                id="file"
+                accept="image/png, image/jpeg"
+              />
+            </div>
             <label for="text">Titre</label>
             <input type="text" name="text" id="text" />
             <label for="">Catégorie</label>
-            <select name="" id="">
+            <select name="select" id="select">
               <option value="">Selectionner une catégorie</option>
               <option value="1">Objets</option>
               <option value="2">Appartements</option>
               <option value="3">Hôtel et restaurants</option>
             </select>
             <hr />
-            <button>Valider</button>
+            <input type="submit" value="Valider" />
           </form>
         </div>
+
+        <!-- Gallery -->
+
         <div class="gallery"></div>
       </section>
+
+      <!-- Contact form -->
+
       <section id="contact">
         <h2>Contact</h2>
         <p>Vous avez un projet ? Discutons-en !</p>

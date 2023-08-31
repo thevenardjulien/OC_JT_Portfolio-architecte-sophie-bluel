@@ -113,7 +113,15 @@ filterBtnHotel.addEventListener("click", () => {
   });
 });
 
-// Active filter (WIP)
+// Filters Button Active
+
+const filterBtns = document.querySelectorAll(".filter");
+filterBtns.forEach((filterBtn) => {
+  filterBtn.addEventListener("click", () => {
+    document.querySelector(".active")?.classList.remove("active");
+    filterBtn.classList.add("active");
+  });
+});
 
 // Import Gallery Items
 

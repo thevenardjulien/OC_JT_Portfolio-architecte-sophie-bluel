@@ -184,6 +184,11 @@ button {
   cursor: pointer;
 }
 
+.active {
+  background-color: #1d6154;
+  color: white;
+}
+
 /* Modal */
 
 .edit {
@@ -256,6 +261,7 @@ button {
   padding: 3px 4px;
   background-color: black;
   border-radius: 2px;
+  cursor: pointer;
 }
 
 /* Modal End */
@@ -382,7 +388,7 @@ li:hover {
 
 .filters {
   text-align: center;
-  width: 90%;
+  width: 60%;
   display: block;
   margin: 0 auto 30px auto;
 }

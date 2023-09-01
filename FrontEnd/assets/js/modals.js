@@ -47,13 +47,13 @@ modalAddPrev.addEventListener("click", () => {
 
 // Import Modal Gallery Items
 
-for (let i = 0; i < works.length; i++) {
+for (let work of works) {
   const modalItem = document.createElement("div");
-  modalItem.dataset.id = works[i].id;
+  modalItem.dataset.id = work.id;
 
   const modalImg = document.createElement("img");
-  modalImg.src = works[i].imageUrl;
-  modalImg.alt = works[i].title;
+  modalImg.src = work.imageUrl;
+  modalImg.alt = work.title;
 
   const modalEdit = document.createElement("a");
   modalEdit.textContent = "Éditer";

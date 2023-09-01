@@ -1,9 +1,4 @@
-/*
-// import { updateLogin } from "./js/login.js";
-Problème d'import, à voir avec Atsé
-*/
-
-// NAV LogInOut display
+// NAV - LogIn | LogOut display
 
 const storedToken = localStorage.token;
 const login = document.querySelector(".log a");
@@ -14,8 +9,7 @@ if (storedToken) {
   login.innerText = "login";
 }
 
-// NAV LogOut onclick
-// Remove Token
+// NAV - LogOut onclick (Remove Token)
 
 login.addEventListener("click", () => {
   if (storedToken) {

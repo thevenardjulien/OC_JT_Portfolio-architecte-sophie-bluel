@@ -16,16 +16,16 @@ if (storedToken) {
 
 // Import Gallery Items
 
-for (let i = 0; i < works.length; i++) {
+for (let work of works) {
   const workFigure = document.createElement("figure");
-  workFigure.dataset.category = works[i].categoryId;
+  workFigure.dataset.category = work.categoryId;
 
   const workImg = document.createElement("img");
-  workImg.src = works[i].imageUrl;
-  workImg.alt = works[i].title;
+  workImg.src = work.imageUrl;
+  workImg.alt = work.title;
 
   const workFigCaption = document.createElement("figcaption");
-  workFigCaption.textContent = works[i].title;
+  workFigCaption.textContent = work.title;
 
   workFigure.append(workImg);
   workFigure.append(workFigCaption);

@@ -1,4 +1,4 @@
-import { fetchWorks } from "./fetch.js";
+import { fetchPostWork, fetchWorks } from "./fetch.js";
 
 const works = await fetchWorks();
 
@@ -94,14 +94,28 @@ modalAddFile.addEventListener("change", () => {
   placeholder.append(img);
 });
 
+export const formData = new FormData();
+const imageInput = document.getElementById("file");
+const title = document.getElementById("text");
+const category = document.getElementById("select");
+
+// const imageElement = document.querySelector("#file");
+// console.dir(imageElement);
+
 modalAddForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const formData = new FormData(modalAddForm);
+  const image = imageInput.files[0];
 
-  for (let item of formData) {
-    console.log(item[0], item[1]);
-  }
+  formData.append("image", image);
+  formData.append("title", title.value);
+  formData.append("category", category.value);
+
+  fetchPostWork();
+
   modalAddForm.reset();
+  const resultDiv = document.createElement("div");
+  resultDiv.textContent = `Formulaire soumis.`;
+  modalAddForm.append(resultDiv);
   placeholder.innerHTML = `<i class="fa-regular fa-image"></i>`;
 });

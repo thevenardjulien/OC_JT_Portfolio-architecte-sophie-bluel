@@ -1,3 +1,5 @@
+import { formData } from "./modals.js";
+
 // WORKS
 
 export async function fetchWorks() {
@@ -55,3 +57,28 @@ function loginNotFound() {
 }
 
 // POST WORK
+
+const modalAddForm = document.getElementById("modal-add-form");
+const token = localStorage.getItem("token");
+
+export async function fetchPostWork() {
+  try {
+    const r = await fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "Application/json",
+      },
+      body: formData,
+    });
+    if (r.ok) {
+      return console.log(r.json());
+    } else if (r.status === 401) {
+      for (let data of formData) {
+        console.log(data);
+      }
+    }
+  } catch (e) {
+    console.log("Erreur :" + e);
+  }
+}

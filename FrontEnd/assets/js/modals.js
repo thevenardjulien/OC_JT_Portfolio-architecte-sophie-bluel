@@ -1,4 +1,4 @@
-import { fetchPostWork, fetchWorks } from "./fetch.js";
+import { fetchDeleteWork, fetchPostWork, fetchWorks } from "./fetch.js";
 
 const works = await fetchWorks();
 
@@ -14,36 +14,38 @@ const modalAddExit = document.querySelector(".modal-add-exit");
 
 // Modal & ModalAdd display
 
-editGallery.addEventListener("click", (e) => {
-  modal.style.display = "block";
-  e.stopPropagation();
-});
+if (window.location.pathname === "/FrontEnd/index.html") {
+  editGallery.addEventListener("click", (e) => {
+    modal.style.display = "block";
+    e.stopPropagation();
+  });
 
-document.addEventListener("click", () => {
-  modal.style.display = "none";
-  modalAdd.style.display = "none";
-});
+  document.addEventListener("click", () => {
+    modal.style.display = "none";
+    modalAdd.style.display = "none";
+  });
 
-modal.addEventListener("click", (e) => {
-  e.stopPropagation();
-});
+  modal.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
 
-modalAdd.addEventListener("click", (e) => {
-  e.stopPropagation();
-});
+  modalAdd.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
 
-modalExit.addEventListener("click", () => {
-  modal.style.display = "none";
-});
+  modalExit.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
 
-modalAddExit.addEventListener("click", () => {
-  modalAdd.style.display = "none";
-});
+  modalAddExit.addEventListener("click", () => {
+    modalAdd.style.display = "none";
+  });
 
-modalAddPrev.addEventListener("click", () => {
-  modalAdd.style.display = "none";
-  modal.style.display = "block";
-});
+  modalAddPrev.addEventListener("click", () => {
+    modalAdd.style.display = "none";
+    modal.style.display = "block";
+  });
+}
 
 // Import Modal Gallery Items
 
@@ -60,6 +62,7 @@ for (let work of works) {
 
   const modalTrash = document.createElement("i");
   modalTrash.classList.add("modal-trash", "fa-solid", "fa-trash-can");
+  modalTrash.dataset.id = work.id;
 
   modalItem.append(modalImg);
   modalItem.append(modalEdit);
@@ -67,8 +70,19 @@ for (let work of works) {
   modalGallery.append(modalItem);
 }
 
+// DELETE Work
+
+const modalTrashes = document.querySelectorAll(".modal-trash");
+for (let modalTrash of modalTrashes) {
+  let dataId = modalTrash.dataset.id;
+  modalTrash.addEventListener("click", () => {
+    fetchDeleteWork(dataId);
+    console.log(dataId);
+  });
+}
+
 // Add work
-// Open ModalAdd
+// (Open ModalAdd)
 
 const addWorkBtn = document.querySelector(".modal-add-del button");
 
@@ -98,9 +112,6 @@ export const formData = new FormData();
 const imageInput = document.getElementById("file");
 const title = document.getElementById("text");
 const category = document.getElementById("select");
-
-// const imageElement = document.querySelector("#file");
-// console.dir(imageElement);
 
 modalAddForm.addEventListener("submit", (e) => {
   e.preventDefault();

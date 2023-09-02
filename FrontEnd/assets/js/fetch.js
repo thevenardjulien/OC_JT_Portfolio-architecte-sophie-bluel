@@ -1,10 +1,11 @@
+import { localhost, storedToken } from "./config.js";
 import { formData } from "./modals.js";
 
-// WORKS
+// GET WORKS
 
 export async function fetchWorks() {
   try {
-    const r = await fetch("http://localhost:5678/api/works", {
+    const r = await fetch(`${localhost}/api/works`, {
       Accept: "application/json",
     });
     if (r.ok) {
@@ -15,11 +16,11 @@ export async function fetchWorks() {
   }
 }
 
-// LOGIN
+// POST LOGIN
 
 export async function fetchLogin(email, password) {
   try {
-    const r = await fetch("http://localhost:5678/api/users/login", {
+    const r = await fetch(`${localhost}/api/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +37,6 @@ export async function fetchLogin(email, password) {
       const token = responseLogin.token;
       localStorage.setItem("token", token);
       window.location.href = "./index.html";
-      return token;
     } else if (r.status === 401) {
       loginIncorrect();
     } else if (r.status === 404) {
@@ -56,17 +56,32 @@ function loginNotFound() {
   formAlert.textContent = "Impossible de trouver cet utilisateur.";
 }
 
-// POST WORK
+// DELETE WORK
 
-const modalAddForm = document.getElementById("modal-add-form");
-const token = localStorage.getItem("token");
+export async function fetchDeleteWork(id) {
+  try {
+    const r = await fetch(`${localhost}/api/works/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${storedToken}`,
+      },
+    });
+    if (r.ok) {
+      console.log(`L'élément ${id} a bien été supprimé`);
+    }
+  } catch (err) {
+    console.error("Erreur : " + err);
+  }
+}
+
+// POST WORK
 
 export async function fetchPostWork() {
   try {
-    const r = await fetch("http://localhost:5678/api/works", {
+    const r = await fetch(`${localhost}/api/works`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${storedToken}`,
         Accept: "Application/json",
       },
       body: formData,

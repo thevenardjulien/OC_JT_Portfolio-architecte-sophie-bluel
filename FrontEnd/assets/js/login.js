@@ -1,23 +1,41 @@
-// Login
-
+import { storedToken } from "./config.js";
 import { fetchLogin } from "./fetch.js";
 
-let emailInput = document.querySelector('input[type="email"]');
-let passwordInput = document.querySelector('input[type="password"]');
-let submitInput = document.querySelector('input[type="submit"]');
+const login = document.querySelector(".log a");
+const emailInput = document.querySelector('input[type="email"]');
+const passwordInput = document.querySelector('input[type="password"]');
+const submitInput = document.querySelector('input[type="submit"]');
 
+export function displayLogInOut() {
+  if (storedToken) {
+    login.innerText = "logout";
+  } else {
+    login.innerText = "login";
+  }
+}
+
+// Login Form
 let email;
 let password;
 
-emailInput.addEventListener("input", (e) => {
-  email = e.target.value;
-});
+if (window.location.pathname === "/FrontEnd/login.html") {
+  emailInput.addEventListener("input", (e) => {
+    email = e.target.value;
+  });
 
-passwordInput.addEventListener("input", (e) => {
-  password = e.target.value;
-});
+  passwordInput.addEventListener("input", (e) => {
+    password = e.target.value;
+  });
 
-submitInput.addEventListener("click", (e) => {
-  e.preventDefault();
-  fetchLogin(email, password);
+  submitInput.addEventListener("click", (e) => {
+    e.preventDefault();
+    fetchLogin(email, password);
+  });
+}
+
+// Remove token on logout
+login.addEventListener("click", () => {
+  if (storedToken) {
+    localStorage.removeItem("token");
+  }
 });

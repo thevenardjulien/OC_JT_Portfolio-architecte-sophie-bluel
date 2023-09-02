@@ -1,18 +1,18 @@
-// NAV - LogIn | LogOut display
+import { filterActiveBtn } from "./js/filters.js";
+import { displayEditGallery, displayGalleryItems } from "./js/gallery.js";
+import { displayLogInOut } from "./js/login.js";
 
-const storedToken = localStorage.token;
-const login = document.querySelector(".log a");
+displayLogInOut();
 
-if (storedToken) {
-  login.innerText = "logout";
-} else {
-  login.innerText = "login";
+// INDEX.HTML
+if (window.location.pathname === "/FrontEnd/index.html") {
+  displayEditGallery();
+  displayGalleryItems();
+  filterActiveBtn();
+  import("./js/modals.js");
 }
 
-// NAV - LogOut onclick (Remove Token)
-
-login.addEventListener("click", () => {
-  if (storedToken) {
-    localStorage.removeItem("token");
-  }
-});
+// LOGIN.HTML
+if (window.location.pathname === "/FrontEnd/login.html") {
+  import("./js/login.js");
+}

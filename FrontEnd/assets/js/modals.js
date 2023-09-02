@@ -49,47 +49,80 @@ if (window.location.pathname === "/FrontEnd/index.html") {
 
 // Import Modal Gallery Items
 
-for (let work of works) {
-  const modalItem = document.createElement("div");
-  modalItem.dataset.id = work.id;
+export function displayModalGalleryItems() {
+  for (let work of works) {
+    const modalItem = document.createElement("div");
+    modalItem.dataset.id = work.id;
 
-  const modalImg = document.createElement("img");
-  modalImg.src = work.imageUrl;
-  modalImg.alt = work.title;
+    const modalImg = document.createElement("img");
+    modalImg.src = work.imageUrl;
+    modalImg.alt = work.title;
 
-  const modalEdit = document.createElement("a");
-  modalEdit.textContent = "Éditer";
+    const modalEdit = document.createElement("a");
+    modalEdit.textContent = "Éditer";
 
-  const modalTrash = document.createElement("i");
-  modalTrash.classList.add("modal-trash", "fa-solid", "fa-trash-can");
-  modalTrash.dataset.id = work.id;
+    const modalTrash = document.createElement("i");
+    modalTrash.classList.add("modal-trash", "fa-solid", "fa-trash-can");
+    modalTrash.dataset.id = work.id;
 
-  modalItem.append(modalImg);
-  modalItem.append(modalEdit);
-  modalItem.append(modalTrash);
-  modalGallery.append(modalItem);
+    modalItem.append(modalImg);
+    modalItem.append(modalEdit);
+    modalItem.append(modalTrash);
+    modalGallery.append(modalItem);
+  }
 }
 
 // DELETE Work
 
-const modalTrashes = document.querySelectorAll(".modal-trash");
-for (let modalTrash of modalTrashes) {
-  let dataId = modalTrash.dataset.id;
-  modalTrash.addEventListener("click", () => {
-    fetchDeleteWork(dataId);
-    console.log(dataId);
-  });
+export function deleteWork() {
+  const modalTrashes = document.querySelectorAll(".modal-trash");
+  console.log(modalTrashes);
+  for (let modalTrash of modalTrashes) {
+    let dataId = modalTrash.dataset.id;
+    modalTrash.addEventListener("click", () => {
+      fetchDeleteWork(dataId);
+    });
+  }
 }
 
-// Add work
+// Add work button
 // (Open ModalAdd)
 
 const addWorkBtn = document.querySelector(".modal-add-del button");
 
-addWorkBtn.addEventListener("click", () => {
-  modalAdd.style.display = "block";
-  modal.style.display = "none";
-});
+export function addWorkButton() {
+  addWorkBtn.addEventListener("click", () => {
+    modalAdd.style.display = "block";
+    modal.style.display = "none";
+  });
+}
+
+// ADD WORK
+
+export const formData = new FormData();
+const imageInput = document.getElementById("file");
+const title = document.getElementById("text");
+const category = document.getElementById("select");
+
+export function submitModalAddForm() {
+  modalAddForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const image = imageInput.files[0];
+
+    formData.append("image", image);
+    formData.append("title", title.value);
+    formData.append("category", category.value);
+
+    fetchPostWork();
+
+    modalAddForm.reset();
+    const resultDiv = document.createElement("div");
+    resultDiv.textContent = `Formulaire soumis.`;
+    modalAddForm.append(resultDiv);
+    placeholder.innerHTML = `<i class="fa-regular fa-image"></i>`;
+  });
+}
 
 // ModalAdd-Form
 
@@ -100,33 +133,12 @@ const placeholderImg = document.querySelector(".file-container-placeholder i");
 
 // Edit placeholder with loaded image
 
-modalAddFile.addEventListener("change", () => {
-  const img = document.createElement("img");
-  img.classList.add("active-img");
-  img.src = URL.createObjectURL(modalAddFile.files[0]);
-  placeholderImg.style.display = "none";
-  placeholder.append(img);
-});
-
-export const formData = new FormData();
-const imageInput = document.getElementById("file");
-const title = document.getElementById("text");
-const category = document.getElementById("select");
-
-modalAddForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const image = imageInput.files[0];
-
-  formData.append("image", image);
-  formData.append("title", title.value);
-  formData.append("category", category.value);
-
-  fetchPostWork();
-
-  modalAddForm.reset();
-  const resultDiv = document.createElement("div");
-  resultDiv.textContent = `Formulaire soumis.`;
-  modalAddForm.append(resultDiv);
-  placeholder.innerHTML = `<i class="fa-regular fa-image"></i>`;
-});
+export function editPlaceHolder() {
+  modalAddFile.addEventListener("change", () => {
+    const img = document.createElement("img");
+    img.classList.add("active-img");
+    img.src = URL.createObjectURL(modalAddFile.files[0]);
+    placeholderImg.style.display = "none";
+    placeholder.append(img);
+  });
+}

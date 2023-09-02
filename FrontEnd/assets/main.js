@@ -1,6 +1,13 @@
 import { filterActiveBtn } from "./js/filters.js";
 import { displayEditGallery, displayGalleryItems } from "./js/gallery.js";
 import { displayLogInOut } from "./js/login.js";
+import {
+  addWorkButton,
+  deleteWork,
+  displayModalGalleryItems,
+  editPlaceHolder,
+  submitModalAddForm,
+} from "./js/modals.js";
 
 displayLogInOut();
 
@@ -9,7 +16,11 @@ if (window.location.pathname === "/FrontEnd/index.html") {
   displayEditGallery();
   displayGalleryItems();
   filterActiveBtn();
-  import("./js/modals.js");
+  displayModalGalleryItems();
+  addWorkButton();
+  editPlaceHolder();
+  submitModalAddForm();
+  deleteWork();
 }
 
 // LOGIN.HTML

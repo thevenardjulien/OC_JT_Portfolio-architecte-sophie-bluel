@@ -1,24 +1,18 @@
 import { storedToken } from "./config.js";
 import { fetchLogin } from "./fetch.js";
 
-const login = document.querySelector(".log a");
+export const login = document.querySelector(".log a");
+export const sectionLogin = document.querySelector(".login");
 const emailInput = document.querySelector('input[type="email"]');
 const passwordInput = document.querySelector('input[type="password"]');
 const submitInput = document.querySelector('input[type="submit"]');
-
-export function displayLogInOut() {
-  if (storedToken) {
-    login.innerText = "logout";
-  } else {
-    login.innerText = "login";
-  }
-}
+const loginForm = document.querySelector(".login form");
 
 // Login Form
 let email;
 let password;
 
-if (window.location.pathname === "/FrontEnd/login.html") {
+if (loginForm) {
   emailInput.addEventListener("input", (e) => {
     email = e.target.value;
   });

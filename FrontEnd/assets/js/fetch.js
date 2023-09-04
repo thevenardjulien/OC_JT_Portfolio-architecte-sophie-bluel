@@ -1,5 +1,6 @@
 import { localhost, storedToken } from "./config.js";
 import { formData } from "./modals.js";
+import { loginIncorrect, loginNotFound } from "./functions/fetchFuncs.js";
 
 // GET WORKS
 
@@ -45,15 +46,6 @@ export async function fetchLogin(email, password) {
   } catch (err) {
     console.error("Erreur survenue lors de la connexion." + err);
   }
-}
-
-function loginIncorrect() {
-  const formAlert = document.querySelector(".form-alert");
-  formAlert.textContent = "Email ou mot de passe incorrect.";
-}
-function loginNotFound() {
-  const formAlert = document.querySelector(".form-alert");
-  formAlert.textContent = "Impossible de trouver cet utilisateur.";
 }
 
 // DELETE WORK

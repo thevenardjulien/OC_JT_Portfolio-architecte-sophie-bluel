@@ -1,18 +1,23 @@
-import { filterActiveBtn } from "./js/filters.js";
-import { displayEditGallery, displayGalleryItems } from "./js/gallery.js";
-import { displayLogInOut } from "./js/login.js";
+import { filterActiveBtn } from "./js/functions/filtersFuncs.js";
+import { gallery } from "./js/gallery.js";
+import {
+  displayEditGallery,
+  displayGalleryItems,
+} from "./js/functions/galleryFuncs.js";
+import { sectionLogin } from "./js/login.js";
+import { displayLogInOut } from "./js/functions/loginFuncs.js";
 import {
   addWorkButton,
-  deleteWork,
   displayModalGalleryItems,
   editPlaceHolder,
   submitModalAddForm,
-} from "./js/modals.js";
+} from "./js/functions/modalsFuncs.js";
 
+// ALL
 displayLogInOut();
 
-// INDEX.HTML
-if (window.location.pathname === "/FrontEnd/index.html") {
+// Gallery
+if (gallery) {
   displayEditGallery();
   displayGalleryItems();
   filterActiveBtn();
@@ -20,10 +25,9 @@ if (window.location.pathname === "/FrontEnd/index.html") {
   addWorkButton();
   editPlaceHolder();
   submitModalAddForm();
-  deleteWork();
 }
 
-// LOGIN.HTML
-if (window.location.pathname === "/FrontEnd/login.html") {
+// Login
+if (sectionLogin) {
   import("./js/login.js");
 }

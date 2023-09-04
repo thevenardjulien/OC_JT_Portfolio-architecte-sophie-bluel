@@ -18,6 +18,7 @@ if (window.location.pathname === "/FrontEnd/index.html") {
   editGallery.addEventListener("click", (e) => {
     modal.style.display = "block";
     e.stopPropagation();
+    e.preventDefault();
   });
 
   document.addEventListener("click", () => {
@@ -59,7 +60,7 @@ export function displayModalGalleryItems() {
     modalImg.alt = work.title;
 
     const modalEdit = document.createElement("a");
-    modalEdit.textContent = "Éditer";
+    modalEdit.textContent = "éditer";
 
     const modalTrash = document.createElement("i");
     modalTrash.classList.add("modal-trash", "fa-solid", "fa-trash-can");
@@ -76,10 +77,9 @@ export function displayModalGalleryItems() {
 
 export function deleteWork() {
   const modalTrashes = document.querySelectorAll(".modal-trash");
-  console.log(modalTrashes);
   for (let modalTrash of modalTrashes) {
     let dataId = modalTrash.dataset.id;
-    modalTrash.addEventListener("click", () => {
+    modalTrash.addEventListener("click", (e) => {
       fetchDeleteWork(dataId);
     });
   }
@@ -128,8 +128,7 @@ export function submitModalAddForm() {
 
 const modalAddForm = document.getElementById("modal-add-form");
 const modalAddFile = document.getElementById("file");
-const placeholder = document.querySelector(".file-container-placeholder");
-const placeholderImg = document.querySelector(".file-container-placeholder i");
+const fileContainer = document.querySelector(".file-container");
 
 // Edit placeholder with loaded image
 
@@ -138,7 +137,14 @@ export function editPlaceHolder() {
     const img = document.createElement("img");
     img.classList.add("active-img");
     img.src = URL.createObjectURL(modalAddFile.files[0]);
-    placeholderImg.style.display = "none";
-    placeholder.append(img);
+    fileContainer.innerHTML = defineImgSource(img.src);
+    let fileContainerImg = document.querySelector(".file-container img");
+    fileContainerImg.style.maxWidth = "100%";
+    fileContainerImg.style.maxHeight = "220px";
+    fileContainer.style.padding = "0";
   });
+}
+
+function defineImgSource(src) {
+  return `<img src="${src}" alt="imageSource" />`;
 }

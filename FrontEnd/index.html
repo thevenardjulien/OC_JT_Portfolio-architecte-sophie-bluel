@@ -24,14 +24,24 @@
   <body>
     <header>
       <a href="index.html"
-        ><h1>Sophie Bluel <span>Architecte d'interieur</span></h1></a
+        ><h1>
+          Sophie Bluel
+          <span class="uppercase m-top5">Architecte d'interieur</span>
+        </h1></a
       >
       <nav>
         <ul>
           <li><a href="#">projets</a></li>
           <li><a href="#">contact</a></li>
           <li class="log"><a href="login.html">login</a></li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          <li>
+            <a href="#">
+              <img
+                class="instagram"
+                src="./assets/icons/instagram.png"
+                alt="Instagram"
+            /></a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -86,7 +96,7 @@
             <div class="modal-add-del">
               <hr />
               <button>Ajouter une photo</button>
-              <a href="#">Supprimer la galerie</a>
+              <a class="red" href="#">Supprimer la galerie</a>
             </div>
           </div>
         </div>
@@ -110,6 +120,7 @@
                 accept="image/png, image/jpg, image/jpeg"
                 required
               />
+              <p>jpg, png : 4mo max</p>
             </div>
             <label for="text">Titre</label>
             <input type="text" name="title" id="text" required />
